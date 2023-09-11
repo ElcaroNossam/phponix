@@ -10,6 +10,12 @@
             <li>{{ $genre->name }}</li>
         @endforeach
     </ul>
+    <h2>Книги автора:</h2>
+    <ul>
+    @foreach ($authorBooks as $book)
+            <li>{{ $book->title }}</li>
+        @endforeach
+    </ul>
 
     <a href="{{ route('authors.index') }}">Назад к списку авторов</a>
 @endsection

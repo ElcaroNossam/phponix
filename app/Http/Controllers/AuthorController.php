@@ -9,10 +9,12 @@ use App\Models\Author;
 
 class AuthorController extends Controller
 {
+   
     public function show(Author $author)
     {
         $authorGenres = $author->genres;
-        return view('authors.show', compact('author', 'authorGenres'));
+        $authorBooks = $author->books;
+        return view('authors.show', compact('author', 'authorGenres', 'authorBooks'));
     }
 
     public function index()

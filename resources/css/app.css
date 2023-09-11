@@ -17,3 +17,7 @@ html, body {
   .footer {
     flex-shrink: 0;
   }
+
+  .custom-select {
+    max-width: 300px; /* или другая ширина по вашему выбору */
+}
