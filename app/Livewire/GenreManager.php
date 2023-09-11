@@ -46,6 +46,7 @@ class GenreManager extends Component
         $this->genres = Genre::all();
     }
 
+ 
     public function render()
     {
         return view('livewire.genre-manager');

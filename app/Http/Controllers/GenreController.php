@@ -12,10 +12,11 @@ class GenreController extends Controller
         $genres = Genre::all();
         return view('genres.index', compact('genres'));
     }
-
+   
     public function show(Genre $genre)
     {
-        return view('genres.show', compact('genre'));
+        $genres = Genre::all();
+        return view('genres.show', compact('genre', 'genres'));
     }
 
     // app/Http/Controllers/GenreController.php

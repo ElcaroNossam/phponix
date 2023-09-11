@@ -2,11 +2,8 @@
 
 namespace App\Models;
 
-
 use Filament\Models\Contracts\FilamentUser;
-
-
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Filament\Panel\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -14,23 +11,24 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements FilamentUser
 {
-   
     use HasApiTokens, HasFactory, Notifiable;
-    public function isAdmin()
-{
-    return $this->admin === true; // или можно просто вернуть $this->admin, так как оно уже является булевым значением
-}
-public function isFilamentAdmin()
-{
-    return $this->admin === true;
-}
-    public function canAccessPanel(\Filament\Panel $panel)
-{
-    // Реализуйте здесь логику контроля доступа
-    // Вы можете проверить роль пользователя или разрешения
-    return $this->isAdmin(); // Замените на вашу логику
-}
-   
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        // Реализуйте здесь логику контроля доступа
+        // Вы можете проверить роль пользователя или разрешения
+        return $this->isAdmin(); // Замените на вашу логику
+    }
+
+    /**
+     * Определяет, является ли пользователь администратором.
+     *
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return $this->admin === true;
+    }
 
     /**
      * The attributes that are mass assignable.

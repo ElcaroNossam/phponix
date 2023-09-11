@@ -5,6 +5,7 @@
 
     <form wire:submit.prevent="createAuthor">
         <input type="text" wire:model="name" placeholder="Имя автора">
+        <label for="book_id">Выберите жанр:</label>
         <select multiple wire:model="selectedGenres">
         @foreach ($genres as $genre)
             <option value="{{ $genre->id }}">{{ $genre->name }}</option>

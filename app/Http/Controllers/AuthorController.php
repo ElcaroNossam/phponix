@@ -6,21 +6,24 @@ use Illuminate\Http\Request;
 // app/Http/Controllers/AuthorController.php
 
 use App\Models\Author;
+use App\Models\Genre;
 
 class AuthorController extends Controller
 {
    
     public function show(Author $author)
     {
+        $genres = Genre::all();
         $authorGenres = $author->genres;
         $authorBooks = $author->books;
-        return view('authors.show', compact('author', 'authorGenres', 'authorBooks'));
+        return view('authors.show', compact('author', 'authorGenres', 'authorBooks', 'genres'));
     }
 
     public function index()
     {
+        $genres = Genre::all();
         $authors = Author::all();
-        return view('authors.index', compact('authors'));
+        return view('authors.index', compact('authors', 'genres'));
     }
 
     public function create()
