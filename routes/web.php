@@ -1,10 +1,17 @@
 <?php
-
+use Filament\Http\Controllers\FilamentAssetController;
+use Filament\Http\Controllers\FilamentController;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\DatabaseCheckController;
 
 Route::get('/check-database', [DatabaseCheckController::class, 'checkDatabaseConnection']);
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/filament/{view?}', [FilamentController::class, 'index'])->where('view', '(.*)')->name('filament');
+});
+
+Route::get('/filament-assets/{asset}', [FilamentAssetController::class, 'show'])->where('asset', '(.*)');
 
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
